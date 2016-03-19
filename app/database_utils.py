@@ -3,18 +3,18 @@ class database():
 	def __init__(self):
 
 		# Connect to the database. The enviroment variable is on the Heroku servers 
-		self.urlparse.uses_netloc.append("postgres")
+		urlparse.uses_netloc.append("postgres")
 		self.url = urlparse.urlparse(os.environ["DATABASE_URL"])
 		self.conn = None
 
 	def connect(self):
 		
 		self.conn = psycopg2.connect(
-			database=url.path[1:],
-			user=url.username,
-			password=url.password,
-			host=url.hostname,
-			port=url.port
+			database = self.url.path[1:],
+			user = self.url.username,
+			password = self.url.password,
+			host = self.url.hostname,
+			port = self.url.port
 		)
 
 	def disconnect(self):
@@ -22,7 +22,7 @@ class database():
 
 	def get_cursor(self):
 		if conn == None:
-			connect()
+			self.connect()
 		
 		cur = conn.cursor()		
 
