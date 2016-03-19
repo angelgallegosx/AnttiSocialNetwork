@@ -43,7 +43,7 @@ def statistics(nDays):
 
 	#return str( json.dumps(cur.fetchall(), indent=2) )
 	rows = cur.fetchall()
-	return "Hello"
+	return "Hello", str(rows)
     #return render_template('welcome.html')
 
 @app.route('/login', methods=["GET", "POST"])
