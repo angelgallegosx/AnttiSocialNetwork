@@ -1,4 +1,8 @@
 from app import app
+import os
+import psycopg2
+import urlparse
+
 from flask import Flask, render_template, request, jsonify
 
 @app.route('/')
@@ -30,10 +34,6 @@ def update_data():
 @app.route('/db_test')
 def test():
 
-	import os
-	import psycopg2
-	import urlparse
-
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
@@ -45,7 +45,16 @@ def test():
 		port=url.port
 	)
 
-	return "Hello"
+	cur = conn.cursor()
+
+	cur.execute("SELECT fromDate,toDate,domain FROM data WHERE user_id='test'")
+
+	rows = cur.fetchall()
+
+	for row in rows:
+		print row
+
+	return row[0]
 
 # Run method start the flask server
 if __name__ == '__main__':
