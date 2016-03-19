@@ -54,7 +54,7 @@ def test():
 	for row in rows:
 		print row
 
-	return row[0]
+	return "hello"
 
 # Run method start the flask server
 if __name__ == '__main__':
