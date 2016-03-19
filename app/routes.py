@@ -55,7 +55,9 @@ def test():
 	for row in rows:
 		print row
 
-	return rows[0]
+	conn.close()
+
+	return str(rows[0])
 
 # Run method start the flask server
 if __name__ == '__main__':
