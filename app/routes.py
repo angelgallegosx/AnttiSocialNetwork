@@ -44,14 +44,16 @@ def statistics(nDays):
 	#return str( json.dumps(cur.fetchall(), indent=2) )
 	rows = cur.fetchall()
 
+	"""
 	dic = {}
 	for row in rows:
 		if dic.get(row["user_id"]) == None:
-			dic[row["user_id"]] = {row}
+			dic[row["user_id"]] = [row]
 		else:
 			dic[row["user_id"]] = dic[row["user_id"]].append(row)
-
-	#return jsonify({"message":str(rows[0])})
+	"""
+	
+	return jsonify({"message":str(rows[0])})
 
 	return jsonify(dic)
     #return render_template('welcome.html')
