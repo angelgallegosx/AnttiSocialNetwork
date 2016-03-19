@@ -32,12 +32,19 @@ def login():
 def update_data():
 
 	#print request.values
-	request.get_data()
+	data = request.get_json()
 	try:
+		"""
 		userID = request.form.get("user_id")
 		domain = request.form.get("domain")
 		start = request.form.get("start")
 		end = request.form.get("end")	
+		"""
+		userID = data.get("user_id")
+		domain = data.get("domain")
+		start = data.get("start")
+		end = data.get("end")	
+		
 	except Exception, e:
 		raise e
 	
@@ -60,7 +67,7 @@ def update_data():
 
 	string = userID + " " + domain + " " + start + " " + end 
 
-	return jsonify({"message:" : "OK", "I received":request.get_data})
+	return jsonify({"message:" : "OK", "I received":string})
 	
 
 @app.route('/db_test')
