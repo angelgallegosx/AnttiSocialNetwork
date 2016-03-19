@@ -60,6 +60,7 @@ def update_data():
 
 	return jsonify({"message:" : "OK", "I received":string})
 
+	
 @app.route('/db_test')
 def test():
 
