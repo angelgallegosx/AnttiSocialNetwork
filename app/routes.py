@@ -31,9 +31,9 @@ def update_data():
 	#print request.values
 	try:
 		userID = request.form.get("user_id")
-		domain = request.form.get("domain")
-		start = request.form.get("start")
-		end = request.form.get("end")	
+		#domain = request.form.get("domain")
+		#start = request.form.get("start")
+		#end = request.form.get("end")	
 	except Exception, e:
 		return jsonify({"message:" : "shit" )
 	
