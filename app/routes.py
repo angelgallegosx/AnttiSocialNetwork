@@ -46,8 +46,11 @@ def statistics(nDays):
 
 	dic = {}
 	for row in rows:
-		dic[row["user_id"]] = row
-	
+		if dic.get(row["user_id"]) == None:
+			dic[row["user_id"]] = [row]
+		else:
+			dic[row["user_id"]] = dic[row["user_id"]].append(row)
+
 	#return jsonify({"message":str(rows[0])})
 
 	return str( dic )
