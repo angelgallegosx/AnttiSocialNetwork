@@ -44,8 +44,8 @@ def statistics(nDays):
 	#return str( json.dumps(cur.fetchall(), indent=2) )
 	rows = cur.fetchall()
 
-	for row in rows:
-		jsonify(row)
+	#for row in rows:
+	#	jsonify(row)
 	
 	return jsonify({"message":str(rows[0])})
 
