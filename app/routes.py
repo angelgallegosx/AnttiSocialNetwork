@@ -41,7 +41,7 @@ def statistics(nDays):
 	cur = conn.cursor(cursor_factory=RealDictCursor)
 	cur.execute("SELECT * FROM public.data" ) #WHERE fromDate >= %s", (fromDate) 
 
-	return json.dumps(cur.fetchall(), indent=2)
+	return str( json.dumps(cur.fetchall(), indent=2) )
 	#rows = cur.fetchall()
 	#return "Hello"
     #return render_template('welcome.html')
