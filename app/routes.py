@@ -57,7 +57,7 @@ def update_data():
 	conn.commit()
 
 
-	return request.get_json()
+	return jsonify(request.json)
 	#return jsonify({"message:" : "OK", "test":userID})
 
 @app.route('/db_test')
