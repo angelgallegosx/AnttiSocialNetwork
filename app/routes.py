@@ -2,6 +2,7 @@ from app import app
 import os
 import psycopg2
 import urlparse
+import database_utils
 
 from flask import Flask, render_template, request, jsonify
 
@@ -27,28 +28,23 @@ def login():
 @app.route('/update_data', methods=["POST"])
 def update_data():
 
-	print request.values
+	#print request.values
+	try:
+		userID = request.form.get("user_id")
+		domain = request.form.get("domain")
+		start = request.form.get("start")
+		end = request.form.get("end")	
+	except Exception, e:
+		raise e
+	
+	db = database()
+	cur = db.get_cursor()
+	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 
-	return jsonify({"message:" : "OK"})
+	return jsonify({"message:" : "OK", "test":userID})
 
 @app.route('/db_test')
 def test():
-
-	# Connect to the database. The enviroment variable is on the Heroku servers 
-	urlparse.uses_netloc.append("postgres")
-	url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
-	conn = psycopg2.connect(
-		database=url.path[1:],
-		user=url.username,
-		password=url.password,
-		host=url.hostname,
-		port=url.port
-	)
-
-	cur = conn.cursor()
-
-	cur.execute("SELECT data.\"fromDate\",data.\"toDate\",data.domain FROM public.data WHERE user_id = 'test'")
 
 	rows = cur.fetchall()
 
