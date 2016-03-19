@@ -35,7 +35,7 @@ def update_data():
 		start = request.form.get("start")
 		end = request.form.get("end")	
 	except Exception, e:
-		raise e
+		return jsonify({"message:" : e.strerror)
 	
 	db = database()
 	cur = db.get_cursor()
