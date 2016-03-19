@@ -56,9 +56,9 @@ def update_data():
 	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 	conn.commit()
 
+	string = userID + " " + domain + " " + start + " " + end 
 
-	return jsonify(request.json)
-	#return jsonify({"message:" : "OK", "test":userID})
+	return jsonify({"message:" : "OK", "I received":string})
 
 @app.route('/db_test')
 def test():
