@@ -31,8 +31,8 @@ def login():
 @app.route('/update_data', methods=["POST"])
 def update_data():
 
-	"""
 	#print request.values
+	request.get_data()
 	try:
 		userID = request.form.get("user_id")
 		domain = request.form.get("domain")
@@ -61,8 +61,7 @@ def update_data():
 	string = userID + " " + domain + " " + start + " " + end 
 
 	return jsonify({"message:" : "OK", "I received":string})
-	"""
-	return jsonify({"message:" : "OK", "I received":request.data})
+	
 
 @app.route('/db_test')
 def test():
