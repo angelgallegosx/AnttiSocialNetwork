@@ -39,7 +39,7 @@ def update_data():
 	
 	db = database()
 	cur = db.get_cursor()
-	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
+	#cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 
 	return jsonify({"message:" : "OK", "test":userID})
 
