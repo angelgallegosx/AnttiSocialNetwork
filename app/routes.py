@@ -47,7 +47,7 @@ def test():
 
 	cur = conn.cursor()
 
-	cur.execute("SELECT data.fromDate,data.toDate,data.domain FROM public.data WHERE user_id = 'test'")
+	cur.execute("SELECT data.\"fromDate\",data.\"toDate\",data.domain FROM public.data WHERE user_id = 'test'")
 
 	rows = cur.fetchall()
 
