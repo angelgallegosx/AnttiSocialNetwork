@@ -7,6 +7,7 @@ class database:
 	def __init__(self):
 
 		# Connect to the database. The enviroment variable is on the Heroku servers 
+		
 		urlparse.uses_netloc.append("postgres")
 		self.url = urlparse.urlparse(os.environ["DATABASE_URL"])
 		self.conn = None
@@ -26,9 +27,10 @@ class database:
 		self.conn = None
 
 	def get_cursor(self):
-		if self.conn == None:
+		if conn == None:
 			self.connect()
 		
 		cur = conn.cursor()		
 
 		return cur
+	
