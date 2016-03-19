@@ -25,9 +25,13 @@ class database:
 	def disconnect(self):
 		self.conn = None
 
+	def get_connection(self):
+		return self.conn
+
 	def get_cursor(self):
+		
 		if self.conn == None:
-			self.connect()
+			return None
 		
 		cur = conn.cursor()		
 

@@ -40,8 +40,11 @@ def update_data():
 	except Exception, e:
 		raise e
 	
-	#db = database()
-	#cur = db.get_cursor()
+	db = database()
+	conn = db.get_connection()
+	cur = db.get_cursor()
+	
+	"""
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 	conn = psycopg2.connect(
@@ -52,7 +55,7 @@ def update_data():
 			port = url.port
 	)
 	cur = conn.cursor()
-
+	"""
 	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 	conn.commit()
 
