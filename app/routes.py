@@ -1,32 +1,50 @@
 from app import app
+from datetime import date, timedelta
+import json
 
 # Meanwhile
 import os
 import psycopg2
+from psycopg2.extras import RealDictCursor
 import urlparse
 #--
 
 from flask import Flask, render_template, request, jsonify
+try:
+	urlparse.uses_netloc.append("postgres")
+	url = urlparse.urlparse(os.environ["DATABASE_URL"])
+	conn = psycopg2.connect(
+			database = url.path[1:],
+			user = url.username,
+			password = url.password,
+			host = url.hostname,
+			port = url.port
+	)
+except Exception, e:
+	print "Cannot connect to the database"
 
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environ["DATABASE_URL"])
-conn = psycopg2.connect(
-		database = url.path[1:],
-		user = url.username,
-		password = url.password,
-		host = url.hostname,
-		port = url.port
-)
-cur = conn.cursor()
+
+#conn.close()
 
 @app.route('/')
 def index():
     user = {'nickname': 'stranger'}
     return render_template('index.html', title='Antti-Social Network', user=user)
 
-@app.route('/Statistics')
-def welcome():
-    return render_template('welcome.html')
+@app.route('/statistics/<int:nDays>')
+def statistics(nDays):
+
+	#cur.execute("SELECT * FROM public.data WHERE ")
+
+	fromDate = date.today() - timedelta(days=nDays)
+	
+	cur = conn.cursor(cursor_factory=RealDictCursor)
+	cur.execute("SELECT * FROM public.data WHERE fromDate >= %s", (fromDate) )
+
+	return json.dumps(cur.fetchall(), indent=2)
+	#rows = cur.fetchall()
+
+    #return render_template('welcome.html')
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -61,25 +79,13 @@ def update_data():
 	
 	#db = database()
 	#cur = db.get_cursor()
-
+	cur = conn.cursor()
 	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 	conn.commit()
 
 	string = userID + " " + domain + " " + start + " " + end 
 
 	return jsonify({"message:" : "OK", "Received":string})
-
-@app.route('/db_test')
-def test():
-
-	rows = cur.fetchall()
-
-	for row in rows:
-		print row
-
-	conn.close()
-
-	return str(rows[0])
 
 # Run method start the flask server
 if __name__ == '__main__':
