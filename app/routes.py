@@ -31,6 +31,7 @@ def login():
 @app.route('/update_data', methods=["POST"])
 def update_data():
 
+	"""
 	#print request.values
 	try:
 		userID = request.form.get("user_id")
@@ -42,6 +43,7 @@ def update_data():
 	
 	#db = database()
 	#cur = db.get_cursor()
+	
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 	conn = psycopg2.connect(
@@ -59,8 +61,9 @@ def update_data():
 	string = userID + " " + domain + " " + start + " " + end 
 
 	return jsonify({"message:" : "OK", "I received":string})
+	"""
+	return jsonify({"message:" : "OK"})
 
-	
 @app.route('/db_test')
 def test():
 
