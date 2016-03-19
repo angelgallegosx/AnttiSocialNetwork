@@ -7,9 +7,11 @@ class database():
 	def __init__(self):
 
 		# Connect to the database. The enviroment variable is on the Heroku servers 
+		print "hello"
 		urlparse.uses_netloc.append("postgres")
 		self.url = urlparse.urlparse(os.environ["DATABASE_URL"])
 		self.conn = None
+		print "bye"
 
 	def connect(self):
 		
