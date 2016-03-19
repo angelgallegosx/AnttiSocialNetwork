@@ -62,7 +62,7 @@ def update_data():
 
 	return jsonify({"message:" : "OK", "I received":string})
 	"""
-	return jsonify({"message:" : "OK"})
+	return jsonify({"message:" : "OK", "I received":request.data})
 
 @app.route('/db_test')
 def test():
