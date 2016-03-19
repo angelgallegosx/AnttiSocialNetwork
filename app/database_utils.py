@@ -8,7 +8,7 @@ class database():
 
 		# Connect to the database. The enviroment variable is on the Heroku servers 
 		
-		urlparse.uses_netloc.append("postgres")
+		#urlparse.uses_netloc.append("postgres")
 		#self.url = urlparse.urlparse(os.environ["DATABASE_URL"])
 		#self.conn = None
 		
