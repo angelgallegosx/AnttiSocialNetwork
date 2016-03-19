@@ -15,11 +15,11 @@ class database:
 	def connect(self):
 		
 		self.conn = psycopg2.connect(
-			database = self.url.path[1:],
-			user = self.url.username,
-			password = self.url.password,
-			host = self.url.hostname,
-			port = self.url.port
+				database = self.url.path[1:],
+				user = self.url.username,
+				password = self.url.password,
+				host = self.url.hostname,
+				port = self.url.port
 		)
 
 	def disconnect(self):
