@@ -39,7 +39,7 @@ def statistics(nDays):
 	fromDate = date.today() - timedelta(days=nDays)
 	
 	cur = conn.cursor(cursor_factory=RealDictCursor)
-	cur.execute("SELECT * FROM public.data WHERE fromDate >= %s", (fromDate) )
+	cur.execute("SELECT * FROM public.data" ) #WHERE fromDate >= %s", (fromDate) 
 
 	#return json.dumps(cur.fetchall(), indent=2)
 	#rows = cur.fetchall()
