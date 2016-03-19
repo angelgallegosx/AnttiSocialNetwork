@@ -1,5 +1,4 @@
 from app import app
-import database_utils
 
 # Meanwhile
 import os

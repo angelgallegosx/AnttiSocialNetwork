@@ -2,37 +2,13 @@ import os
 import psycopg2
 import urlparse
 
-class database:
-
-	def __init__(self):
-
-		# Connect to the database. The enviroment variable is on the Heroku servers 
-		urlparse.uses_netloc.append("postgres")
-		self.url = urlparse.urlparse(os.environ["DATABASE_URL"])
-		self.conn = None
-		
-
-	def connect(self):
-		
-		self.conn = psycopg2.connect(
-				database = self.url.path[1:],
-				user = self.url.username,
-				password = self.url.password,
-				host = self.url.hostname,
-				port = self.url.port
-		)
-
-	def disconnect(self):
-		self.conn = None
-
-	def get_connection(self):
-		return self.conn
-
-	def get_cursor(self):
-		
-		if self.conn == None:
-			self.connect()
-		
-		cur = self.conn.cursor()		
-
-		return cur
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+conn = psycopg2.connect(
+		database = url.path[1:],
+		user = url.username,
+		password = url.password,
+		host = url.hostname,
+		port = url.port
+)
+cur = conn.cursor()
