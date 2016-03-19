@@ -1,3 +1,7 @@
+import os
+import psycopg2
+import urlparse
+
 class database():
 
 	def __init__(self):

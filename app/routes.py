@@ -1,7 +1,4 @@
 from app import app
-import os
-import psycopg2
-import urlparse
 import database_utils
 
 from flask import Flask, render_template, request, jsonify
