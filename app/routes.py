@@ -54,7 +54,7 @@ def update_data():
 	cur = conn.cursor()
 
 	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
-	cur.commit()
+	conn.commit()
 
 	return jsonify({"message:" : "OK", "test":userID})
 
