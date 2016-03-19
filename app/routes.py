@@ -9,6 +9,17 @@ import urlparse
 
 from flask import Flask, render_template, request, jsonify
 
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+conn = psycopg2.connect(
+		database = url.path[1:],
+		user = url.username,
+		password = url.password,
+		host = url.hostname,
+		port = url.port
+)
+cur = conn.cursor()
+
 @app.route('/')
 def index():
     user = {'nickname': 'stranger'}
@@ -40,6 +51,7 @@ def update_data():
 		start = request.form.get("start")
 		end = request.form.get("end")	
 		"""
+		# res = requests.post("https://antti-socialnetwork.herokuapp.com/update_data", json.dumps(data), headers={'Content-type':'application/json'})
 		userID = data.get("user_id")
 		domain = data.get("domain")
 		start = data.get("start")
@@ -50,25 +62,13 @@ def update_data():
 	
 	#db = database()
 	#cur = db.get_cursor()
-	
-	urlparse.uses_netloc.append("postgres")
-	url = urlparse.urlparse(os.environ["DATABASE_URL"])
-	conn = psycopg2.connect(
-			database = url.path[1:],
-			user = url.username,
-			password = url.password,
-			host = url.hostname,
-			port = url.port
-	)
-	cur = conn.cursor()
 
 	cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 	conn.commit()
 
 	string = userID + " " + domain + " " + start + " " + end 
 
-	return jsonify({"message:" : "OK", "I received":string})
-	
+	return jsonify({"message:" : "OK", "Received":string})
 
 @app.route('/db_test')
 def test():
