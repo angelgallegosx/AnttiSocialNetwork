@@ -44,12 +44,13 @@ def statistics(nDays):
 	#return str( json.dumps(cur.fetchall(), indent=2) )
 	rows = cur.fetchall()
 
-	#for row in rows:
-	#	jsonify(row)
+	dic = {}
+	for row in rows:
+		dic[row["user_id"]] = row
 	
-	return jsonify({"message":str(rows[0])})
+	#return jsonify({"message":str(rows[0])})
 
-	#return jsonify(rows)
+	return jsonify(dic)
     #return render_template('welcome.html')
 
 @app.route('/login', methods=["GET", "POST"])
