@@ -34,7 +34,7 @@ def update_data():
 	except Exception, e:
 		raise e
 	
-	#db = database()
+	db = database()
 	#cur = db.get_cursor()
 	#cur.execute(" INSERT INTO public.data(\"user_id\", \"domain\", \"toDate\", \"fromDate\") VALUES (%s, %s, %s, %s)", (userID, domain, start, end) )
 
