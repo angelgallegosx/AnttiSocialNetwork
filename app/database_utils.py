@@ -2,7 +2,7 @@ import os
 import psycopg2
 import urlparse
 
-class database():
+class database:
 
 	def __init__(self):
 
