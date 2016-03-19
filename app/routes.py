@@ -34,6 +34,7 @@ def update_data():
 @app.route('/db_test')
 def test():
 
+	# Connect to the database. The enviroment variable is on the Heroku servers 
 	urlparse.uses_netloc.append("postgres")
 	url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
@@ -54,7 +55,7 @@ def test():
 	for row in rows:
 		print row
 
-	return rows
+	return rows[0]
 
 # Run method start the flask server
 if __name__ == '__main__':
