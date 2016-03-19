@@ -31,8 +31,8 @@ class database:
 	def get_cursor(self):
 		
 		if self.conn == None:
-			return None
+			self.connect()
 		
-		cur = conn.cursor()		
+		cur = self.conn.cursor()		
 
 		return cur
