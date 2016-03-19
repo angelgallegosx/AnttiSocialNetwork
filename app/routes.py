@@ -60,7 +60,7 @@ def update_data():
 
 	string = userID + " " + domain + " " + start + " " + end 
 
-	return jsonify({"message:" : "OK", "I received":string})
+	return jsonify({"message:" : "OK", "I received":request.get_data})
 	
 
 @app.route('/db_test')
