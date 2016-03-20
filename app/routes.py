@@ -46,8 +46,11 @@ def statistics(nDays):
 	
 	userID = "mmm"
 	domain = ""	
+	for row in rows:
+		userID = row[user_id]
+		domain = row[domain]
 
-	return jsonify({"message":str(rows[0])})
+	return jsonify({"message":userID})
 
 	#return jsonify({"message":str(rows[0])})
 
