@@ -44,7 +44,13 @@ def statistics(nDays):
 	#return str( json.dumps(cur.fetchall(), indent=2) )
 	rows = cur.fetchall()
 	
-	return jsonify({"message":str(rows[0])})
+	for row in rows:
+		userID = row[0]
+		domain = row[1]
+
+	return userID
+
+	#return jsonify({"message":str(rows[0])})
 
     #return render_template('welcome.html')
 
