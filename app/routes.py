@@ -52,7 +52,7 @@ def statistics(nDays):
 	
 	#return jsonify({"message":str(rows[0])})
 
-	return ret
+	return str(ret)
     #return render_template('welcome.html')
 
 @app.route('/login', methods=["GET", "POST"])
