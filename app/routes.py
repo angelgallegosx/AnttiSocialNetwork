@@ -45,12 +45,9 @@ def statistics(nDays):
 	rows = cur.fetchall()
 	
 	userID = "mmm"
-	domain = ""
-	for row in rows:
-		userID = row[0]
-		domain = row[1]
+	domain = ""	
 
-	return userID
+	return jsonify({"message":str(rows[0])})
 
 	#return jsonify({"message":str(rows[0])})
 
