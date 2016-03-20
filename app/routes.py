@@ -44,6 +44,8 @@ def statistics(nDays):
 	#return str( json.dumps(cur.fetchall(), indent=2) )
 	rows = cur.fetchall()
 	
+	userID = "mmm"
+	domain = ""
 	for row in rows:
 		userID = row[0]
 		domain = row[1]
